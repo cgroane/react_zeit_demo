@@ -9,7 +9,20 @@ const express = require("express"),
 //        require('dotenv').config()
 
 massive(config.connection_string)
-  .then(dbInstance => app.set("db", dbInstance))
+  .then(dbInstance => {
+    const table = dbInstance.tables.find(c => c.name == "todos");
+    if (!table) {
+      dbInstance
+        .run(
+          `create table todos (
+        id serial primary key,
+        todo varchar(40)
+      )`
+        )
+        .then(console.log);
+    }
+    app.set("db", dbInstance);
+  })
   .catch(console.log);
 
 app.use(session(config.session));
