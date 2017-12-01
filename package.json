@@ -8,6 +8,7 @@
     "cors": "^2.8.4",
     "dotenv": "^4.0.0",
     "express": "^4.16.2",
+    "express-session": "^1.15.6",
     "massive": "^4.5.0",
     "react": "^16.1.1",
     "react-dom": "^16.1.1",
@@ -20,7 +21,12 @@
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
-    "eject": "react-scripts eject"
+    "eject": "react-scripts eject",
+    "deploy": "now --public --dotenv=.env.prod -d",
+    "now-start": "node server/index.js"
+  },
+  "now":{
+    "alias":"croane-demo-host"
   },
   "proxy": "http://localhost:3001"
 }
